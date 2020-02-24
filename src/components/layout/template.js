@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from '../../router';
-import Header from './header';
+import Header from './header/header';
 import Footer from './footer';
 
 const Template = () => {

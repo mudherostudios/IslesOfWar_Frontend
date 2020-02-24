@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'BambooGothic';
+    src: local('BambooGothic'), url('../../../fonts/BambooGothic-Book.ttf') format('truetype');
+}
+
+.navbar {
+    display: flex;
+    background-color: #2e2e2e;
+    position: sticky;
+    top: 0px;
+    width: 43rem;
+    clip-path: polygon(0% 0, 100% 0, 0 800%, 0 0);
+}
+
+.navbar-item {
+    height: 3rem;
+    cursor: pointer;
+    flex: 0 0 auto;
+    padding: 0 3rem;
+}
+
+.navbar-item:not(:first-child) {
+    border-left: 1px solid #232323;
+}
+
+.navbar-item-text {
+    font-family: 'BambooGothic';
+    font-size: 1.4rem;
+    color: #8b8b8b;
+    text-align: center;
+    padding: 0.4rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        clip-path: none;
+        width: 100%
+    }
+
+    .navbar-item:not(:first-child) {
+        border-top: 1px solid #232323;
+    }
+}
