@@ -1,9 +1,10 @@
 import React from 'react';
+import './footer.scss';
 
 const Footer = () => {
     return (
         <footer>
-            Copyright &copy; IslesOfWar {new Date().getFullYear()}
+            <p>Copyright &copy; IslesOfWar {new Date().getFullYear()}</p>
         </footer>
     );
 };
