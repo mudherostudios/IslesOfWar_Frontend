@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledCard = styled.div`
-    background-color: rgba(97, 97, 97, 0.5);
+const CardContainer = styled.div`
+    background-color: rgba(0, 0, 0, 0.7);
     border-radius: 0.5rem;
 `;
 
-const Card = ({children}) => {
+const Card = ({children, className}) => {
     return (
-        <StyledCard>
+        <CardContainer className={className}>
             {children}
-        </StyledCard>
+        </CardContainer>
     )
 };
 
