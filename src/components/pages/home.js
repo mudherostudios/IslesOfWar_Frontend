@@ -1,10 +1,12 @@
 import React from 'react';
+import Card from '../card/card';
+import CardBody from '../card/card-body';
 
 const Home = () => {
     return (
-        <React.Fragment>
-            <h1>Home page</h1>
-        </React.Fragment>
+        <Card>
+            <CardBody>Hello world!</CardBody>
+        </Card>
     );
 }
  

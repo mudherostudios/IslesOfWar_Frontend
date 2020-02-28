@@ -5,14 +5,18 @@ module.exports = api => {
     "@babel/preset-react"
   ];
 
+  const common = [
+    "babel-plugin-styled-components"
+  ];
+
   const productionPlugins = [
     "babel-plugin-jsx-remove-data-test-id"
   ];
   
   const plugins =
     api.env() === "production"
-      ? productionPlugins
-      : [];
+      ? [...common, ...productionPlugins]
+      : [...common];
 
   return {
     plugins,

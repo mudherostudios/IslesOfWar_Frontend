@@ -1,8 +1,7 @@
 import React from 'react';
 import { Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import Template from './components/layout/template/template';
-import './theme.scss';
+import Template from './components/layout/template';
 
 const browserHistory = createBrowserHistory();
 
