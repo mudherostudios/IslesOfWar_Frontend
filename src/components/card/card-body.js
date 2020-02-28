@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledCardBody = styled.div`
-    padding: 2rem;
+    padding: 1rem;
 `;
 
-const CardBody = ({children}) => {
+const CardBody = ({children, className}) => {
     return (
-        <StyledCardBody>
+        <StyledCardBody className={className}>
             {children}
         </StyledCardBody>
     )
