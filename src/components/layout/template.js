@@ -37,7 +37,7 @@ const ContentContainer = styled.div`
 
 const Template = () => {
     return (
-        <React.Fragment>
+        <>
             <GlobalStyle />
             <Container>
                 <Header />
@@ -46,7 +46,7 @@ const Template = () => {
                 </ContentContainer>
                 <Footer />
             </Container>
-        </React.Fragment>
+        </>
     );
 }
  
