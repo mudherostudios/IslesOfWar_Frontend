@@ -1,1 +1,1 @@
-export const GOOGLE_RECAPTCHA_TOKEN = '6Lek_sMUAAAAAJULXy6M92X5AjnpZGBpvFu-5LuI';
+export const GAME_DOWNLOAD_WINDOWS = 'https://drive.google.com/uc?export=download&id=1R_ei2p49ZyH1FBOysFSmYOdsT3GHPZGX';

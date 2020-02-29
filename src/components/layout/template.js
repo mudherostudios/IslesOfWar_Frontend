@@ -4,6 +4,7 @@ import Router from '../../router';
 import Header from './header';
 import Footer from './footer';
 import BambooGothic from '../../fonts/BambooGothic-Book.ttf';
+import BackgroundImage from '../../images/background.png';
 
 const GlobalStyle = createGlobalStyle`
     @font-face {
@@ -16,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        background-image: url('../public//images//background.jpg');
+        background-image: url(${BackgroundImage});
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;

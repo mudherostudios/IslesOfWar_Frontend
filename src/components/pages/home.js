@@ -2,6 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from '../card/card';
 import CardBody from '../card/card-body';
+import { size } from '../../screen-sizes';
+import { GAME_DOWNLOAD_WINDOWS } from '../../constants';
+import IslesOfWarLogo from '../../images/iow_logo.png';
+import WindowsLogo from '../../images/windows_logo.png';
 
 const Logo = styled.img`
     display: block;
@@ -9,6 +13,10 @@ const Logo = styled.img`
     margin: auto;
     width: 50%;
     top: 10vh;
+
+    @media only screen and (max-width: ${size.tablet}) {
+        width: 80vw;
+    }
 `;
 
 const StyledCard = styled(Card)`
@@ -24,15 +32,17 @@ const StyledCardBody = styled(CardBody)`
     color: #dedede;
     padding: 2rem;
     font-size: 1.5rem;
+    text-align: center;
 `;
 
-const Button = styled.div`
+const AirDropButton = styled.div`
     background-color: green;
     border-radius: 3rem;
     width: 80%;
     margin: auto;
     padding: 0.5rem;
     text-align: center;
+    text-decoration: line-through;
     
     :hover {
         cursor: pointer;
@@ -91,23 +101,41 @@ const DownloadButtonText = styled.div`
     padding-left: 0.5rem;
 `;
 
+const DownloadButtonAnchor = styled.a`
+    color: #dedede;
+
+    :visited {
+        color: inherit;
+    }
+
+    :hover {
+        color: inherit;
+    }
+
+    :active {
+        color: inherit;
+    }
+`;
+
 const Home = () => {
     return (
         <>
-            <Logo src='../../../public/images/iow_logo.png'></Logo>
-            
+            <Logo src={IslesOfWarLogo}></Logo>
             <StyledCard>
                 <StyledCardBody>
-                    <Button>Get FREE Air Drop</Button>
+                    <AirDropButton>Get FREE Air Drop</AirDropButton>
+                    Coming Soon!
                 </StyledCardBody>
             </StyledCard>
             <StyledDownloadCard>
                 <StyledDownloadCardBody>
                     <StyledDownloadCardTitle>Download Now</StyledDownloadCardTitle>
-                    <DownloadButton>
-                        <DownloadButtonImage src='../../../public/images/windows_logo.png'></DownloadButtonImage>
-                        <DownloadButtonText>WINDOWS</DownloadButtonText>
-                    </DownloadButton>
+                    <DownloadButtonAnchor href={GAME_DOWNLOAD_WINDOWS} target='_blank'>
+                        <DownloadButton>
+                            <DownloadButtonImage src={WindowsLogo}></DownloadButtonImage>
+                            <DownloadButtonText>WINDOWS</DownloadButtonText>
+                        </DownloadButton>
+                    </DownloadButtonAnchor>
                 </StyledDownloadCardBody>
             </StyledDownloadCard>
         </>
