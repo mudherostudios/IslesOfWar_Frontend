@@ -82,6 +82,8 @@ const DownloadButtonImage = styled.img`
     display: inline-block;
     width: 10%;
     margin: auto;
+    position: relative;
+    top: 0.2rem;
 `;
 
 const DownloadButtonText = styled.div`
