@@ -20,7 +20,6 @@ const NavBar = styled.div`
 
 const NavBarItem = styled.div`
     height: 3rem;
-    cursor: pointer;
     flex: 0 0 auto;
     padding: 0 3rem;
 
@@ -49,16 +48,23 @@ const NavBarItemText = styled.div`
     &.strike-through {
         text-decoration: line-through;
     }
+
+    @media only screen and (max-width: ${size.mobileS}) {
+        font-size: 1.3rem;
+    }
 `;
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
+    flex: 0 0 auto;
+    padding: 0 3rem;
 `;
 
 const StyledAnchor = styled.a`
     color: #dedede;
     text-decoration: none;
     border-left: 1px solid #404040; /* Temporarily until the Downloads page is done */
+    flex: 0 0 auto;
 
     :visited {
         color: inherit;
@@ -76,17 +82,13 @@ const StyledAnchor = styled.a`
 const Header = () => {
     return (
         <NavBar>
-            <StyledNavLink to="/home">
-                <NavBarItem>
-                    <NavBarItemText>Home</NavBarItemText>
-                </NavBarItem>
-            </StyledNavLink>
-
-            <StyledAnchor href={GAME_DOWNLOAD_WINDOWS} target='_blank'>
-                <NavBarItem>
-                    <NavBarItemText>Downloads</NavBarItemText>
-                </NavBarItem>
-            </StyledAnchor>
+            <NavBarItem>
+                <NavBarItemText>Home</NavBarItemText>
+            </NavBarItem>
+            
+            <NavBarItem>
+                <NavBarItemText>Downloads</NavBarItemText>
+            </NavBarItem>
 
             <NavBarItem>
                 <NavBarItemText className='strike-through'>Air Drop</NavBarItemText>

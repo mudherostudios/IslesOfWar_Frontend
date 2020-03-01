@@ -22,10 +22,18 @@ const Logo = styled.img`
 const StyledCard = styled(Card)`
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 2rem;
-    width: 30rem;
+    width: 30vw;
     margin: auto;
     position: relative;
     top: 20vh;
+
+    @media only screen and (max-width: ${size.laptopL}) {
+        width: 43vw;
+    }
+
+    @media only screen and (max-width: ${size.mobileL}) {
+        width: 100vw;
+    }
 `;
 
 const StyledCardBody = styled(CardBody)`
@@ -33,6 +41,10 @@ const StyledCardBody = styled(CardBody)`
     padding: 2rem;
     font-size: 1.5rem;
     text-align: center;
+
+    @media only screen and (max-width: ${size.mobileS}) {
+        font-size: 1.4rem;
+    }
 `;
 
 const AirDropButton = styled.div`
@@ -55,6 +67,10 @@ const StyledDownloadCard = styled(Card)`
     margin: auto;
     position: relative;
     top: 22vh;
+
+    @media only screen and (max-width: ${size.tablet}) {
+        width: 100vw;
+    }
 `;
 
 const StyledDownloadCardBody = styled(CardBody)`
@@ -85,6 +101,10 @@ const DownloadButton = styled.div`
 
     :hover {
         cursor: pointer;
+    }
+
+    @media only screen and (max-width: ${size.mobileL}) {
+        width: 100%;
     }
 `;
 
