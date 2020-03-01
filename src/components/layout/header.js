@@ -56,15 +56,20 @@ const NavBarItemText = styled.div`
 
 const StyledNavLink = styled(NavLink)`
     text-decoration: none;
-    flex: 0 0 auto;
-    padding: 0 3rem;
+
+    :not(:first-child) {
+        border-left: 1px solid #404040;
+    }
+
+    @media only screen and (max-width: ${size.tablet}) {
+        padding: 0;
+        flex: 1;
+    }
 `;
 
 const StyledAnchor = styled.a`
     color: #dedede;
     text-decoration: none;
-    border-left: 1px solid #404040; /* Temporarily until the Downloads page is done */
-    flex: 0 0 auto;
 
     :visited {
         color: inherit;
@@ -77,22 +82,37 @@ const StyledAnchor = styled.a`
     :active {
         color: inherit;
     }
+
+    :not(:first-child) {
+        border-left: 1px solid #404040;
+    }
+
+    @media only screen and (max-width: ${size.tablet}) {
+        padding: 0;
+        flex: 1;
+    }
 `;
 
 const Header = () => {
     return (
         <NavBar>
-            <NavBarItem>
-                <NavBarItemText>Home</NavBarItemText>
-            </NavBarItem>
+            <StyledNavLink to='/home'>
+                <NavBarItem>
+                    <NavBarItemText>Home</NavBarItemText>
+                </NavBarItem>
+            </StyledNavLink>
             
-            <NavBarItem>
-                <NavBarItemText>Downloads</NavBarItemText>
-            </NavBarItem>
+            <StyledAnchor href={GAME_DOWNLOAD_WINDOWS} target='_blank'>
+                <NavBarItem>
+                    <NavBarItemText>Downloads</NavBarItemText>
+                </NavBarItem>
+            </StyledAnchor>
 
-            <NavBarItem>
-                <NavBarItemText className='strike-through'>Air Drop</NavBarItemText>
-            </NavBarItem>
+            <StyledNavLink to='/home'>
+                <NavBarItem>
+                    <NavBarItemText className='strike-through'>Air Drop</NavBarItemText>
+                </NavBarItem>
+            </StyledNavLink>
         </NavBar>
     );
 }

@@ -9,6 +9,7 @@ const StyledFooter = styled.footer`
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const Footer = () => {

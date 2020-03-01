@@ -50,8 +50,6 @@ const StyledCardBody = styled(CardBody)`
 const AirDropButton = styled.div`
     background-color: green;
     border-radius: 3rem;
-    width: 80%;
-    margin: auto;
     padding: 0.5rem;
     text-align: center;
     text-decoration: line-through;
