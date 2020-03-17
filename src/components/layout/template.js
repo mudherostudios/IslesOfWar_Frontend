@@ -33,7 +33,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-    padding-bottom: 2.5rem;
+    padding-bottom: 6rem;
 `;
 
 const Template = () => {

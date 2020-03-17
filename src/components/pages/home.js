@@ -11,7 +11,7 @@ const Logo = styled.img`
     display: block;
     position: relative;
     margin: auto;
-    width: 50%;
+    width: 40%;
     top: 10vh;
 
     @media only screen and (max-width: ${size.tablet}) {
@@ -23,9 +23,7 @@ const StyledCard = styled(Card)`
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 2rem;
     width: 30vw;
-    margin: auto;
-    position: relative;
-    top: 20vh;
+    margin: 10rem auto 0 auto;
 
     @media only screen and (max-width: ${size.laptopL}) {
         width: 43vw;
@@ -62,9 +60,7 @@ const AirDropButton = styled.div`
 const StyledDownloadCard = styled(Card)`
     background-color: transparent;
     width: 30rem;
-    margin: auto;
-    position: relative;
-    top: 22vh;
+    margin: 2rem auto 0 auto;
 
     @media only screen and (max-width: ${size.tablet}) {
         width: 100vw;

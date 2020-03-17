@@ -11,10 +11,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.27",
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-google-recaptcha": "^2.0.1",
     "react-router-dom": "^4.3.1",
+    "react-svg": "^11.0.14",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
