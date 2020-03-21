@@ -146,7 +146,7 @@ const Airdrop = () => {
                             <form onSubmit={onFormSubmit}>
                                 <StyledInputField type="text" name="email" placeholder="Email" onChange={onInputChange} required />
                                 <StyledInputField type="text" name="verifyEmail" placeholder="Verify Email" onChange={onInputChange} required />
-                                <StyledInputField type="text" name="playerName" placeholder="Xaya Player Name" onChange={onInputChange} required />
+                                <StyledInputField type="text" name="playerName" placeholder="Xaya Player Name (without p/)" onChange={onInputChange} required />
                                 {airdropState.email !== airdropState.verifyEmail && airdropState.verifyEmail.length > 0 ? (<ErrorText>Emails do not match</ErrorText>) : null}
                                 <StyledSubmitButton>Request Airdrop</StyledSubmitButton>
                             </form>
