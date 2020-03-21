@@ -50,7 +50,6 @@ const AirDropButton = styled.div`
     border-radius: 3rem;
     padding: 0.5rem;
     text-align: center;
-    text-decoration: line-through;
     
     :hover {
         cursor: pointer;
@@ -131,14 +130,17 @@ const DownloadButtonAnchor = styled.a`
     }
 `;
 
-const Home = () => {
+const Home = ({history}) => {
+    const onAirdropButtonClick = () => {
+        history.push('/airdrop');
+    };
+
     return (
         <>
             <Logo src={IslesOfWarLogo}></Logo>
             <StyledCard>
                 <StyledCardBody>
-                    <AirDropButton>Get FREE Air Drop</AirDropButton>
-                    Coming Soon!
+                    <AirDropButton onClick={onAirdropButtonClick}>Get FREE Air Drop</AirDropButton>
                 </StyledCardBody>
             </StyledCard>
             <StyledDownloadCard>

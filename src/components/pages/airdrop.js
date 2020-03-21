@@ -9,7 +9,7 @@ const StyledCard = styled(Card)`
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 2rem;
     width: 30vw;
-    margin: 10rem auto 0 auto;
+    margin: 5rem auto 0 auto;
 
     @media only screen and (max-width: ${size.laptopL}) {
         width: 43vw;
