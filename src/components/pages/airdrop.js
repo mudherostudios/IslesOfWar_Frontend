@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Card from '../card/card';
 import CardBody from '../card/card-body';
 import { size } from '../../screen-sizes';
+import { requestAirdrop } from '../../actions/airdrop';
 
 const StyledCard = styled(Card)`
     background-color: rgba(0, 0, 0, 0.6);
@@ -89,6 +90,11 @@ const Airdrop = () => {
         playerName: ''
     });
 
+    const [airdropRequest, setAirdropRequest] = useState({
+        result: null,
+        error: null
+    });
+
     const onInputChange = (event) => {
         setAirdropState({
             ...airdropState,
@@ -99,7 +105,26 @@ const Airdrop = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
-        // API call here
+        requestAirdrop({
+            email: airdropState.email, 
+            playerName: airdropState.playerName
+        })
+        .then(response => {
+            if (!response.error) {
+                return setAirdropRequest({
+                    ...airdropRequest, 
+                    result: response
+                });
+            } 
+
+            setAirdropRequest({
+                ...airdropRequest,
+                error: response.error,
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
     };
 
     return (
@@ -112,13 +137,21 @@ const Airdrop = () => {
             </StyledCard>
             <StyledFormCard>
                 <StyledCardBody>
-                    <form onSubmit={onFormSubmit}>
-                        <StyledInputField type="text" name="email" placeholder="Email" onChange={onInputChange} required />
-                        <StyledInputField type="text" name="verifyEmail" placeholder="Verify Email" onChange={onInputChange} required />
-                        <StyledInputField type="text" name="playerName" placeholder="Xaya Player Name" onChange={onInputChange} required />
-                        {airdropState.email !== airdropState.verifyEmail && airdropState.verifyEmail.length > 0 ? (<ErrorText>Emails do not match</ErrorText>) : null}
-                        <StyledSubmitButton>Request Airdrop</StyledSubmitButton>
-                    </form>
+                    {
+                        airdropRequest.result ? (
+                            <p>Your airdrop was successfully requested. A verification link has been sent to your email.</p>
+                        ) : airdropRequest.error ? (
+                            <p>{airdropRequest.error.message}</p>
+                        ) : (
+                            <form onSubmit={onFormSubmit}>
+                                <StyledInputField type="text" name="email" placeholder="Email" onChange={onInputChange} required />
+                                <StyledInputField type="text" name="verifyEmail" placeholder="Verify Email" onChange={onInputChange} required />
+                                <StyledInputField type="text" name="playerName" placeholder="Xaya Player Name" onChange={onInputChange} required />
+                                {airdropState.email !== airdropState.verifyEmail && airdropState.verifyEmail.length > 0 ? (<ErrorText>Emails do not match</ErrorText>) : null}
+                                <StyledSubmitButton>Request Airdrop</StyledSubmitButton>
+                            </form>
+                        )
+                    }
                 </StyledCardBody>
             </StyledFormCard>
         </>
