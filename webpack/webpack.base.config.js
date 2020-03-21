@@ -46,6 +46,9 @@ module.exports = ({env})  => {
             }
             ]
         },
+        devServer: {
+            historyApiFallback: true,
+        },
         plugins: [
             new htmlWebpackPlugin(
             {
