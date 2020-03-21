@@ -80,7 +80,7 @@ const StyledSubmitButton = styled.button`
 
     :disabled {
         cursor: not-allowed;
-        background-color: #8d9e8d;
+        background-color: #949a94;
     }
 `;
 
