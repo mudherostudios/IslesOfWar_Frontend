@@ -1,10 +1,10 @@
 import { API_URL } from '../config';
 
-export const requestAirdrop = ({email, playerName}) => {
+export const requestAirdrop = ({email, playerName, recaptchaToken}) => {
     return new Promise((resolve, reject) => {
         fetch(`${API_URL}/airdrop`, {
             method: 'POST',
-            body: JSON.stringify({email, playerName})
+            body: JSON.stringify({email, playerName, recaptchaToken})
         })
         .then(response => response.json())
         .then(response => resolve(response))
