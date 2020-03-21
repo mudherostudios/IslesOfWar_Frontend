@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import styled from 'styled-components';
 import Card from '../card/card';
 import CardBody from '../card/card-body';
 import { size } from '../../screen-sizes';
 import { requestAirdrop } from '../../actions/airdrop';
+import { GOOGLE_RECAPTCHA_KEY } from '../../config';
 
 const StyledCard = styled(Card)`
     background-color: rgba(0, 0, 0, 0.6);
@@ -68,12 +70,17 @@ const StyledSubmitButton = styled.button`
     width: 60%;
     font-size: 1.5rem;
     padding: 0.5rem;
-    margin-top: 1.8rem;
+    margin-top: 1.5rem;
     margin-left: auto;
     margin-right: auto;
 
     :hover {
         cursor: pointer;
+    }
+
+    :disabled {
+        cursor: not-allowed;
+        background-color: #8d9e8d;
     }
 `;
 
@@ -83,11 +90,19 @@ const ErrorText = styled.p`
     margin-bottom: 0;
 `;
 
+const RecaptchaContainer = styled.div`
+    margin-top: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+`;
+
 const Airdrop = () => {
     const [airdropState, setAirdropState] = useState({
         email: '',
         verifyEmail: '',
-        playerName: ''
+        playerName: '',
+        recaptchaToken: null
     });
 
     const [airdropRequest, setAirdropRequest] = useState({
@@ -107,7 +122,8 @@ const Airdrop = () => {
 
         requestAirdrop({
             email: airdropState.email, 
-            playerName: airdropState.playerName
+            playerName: airdropState.playerName.replace('p/', '').trim(),
+            recaptchaToken: airdropState.recaptchaToken
         })
         .then(response => {
             if (!response.error) {
@@ -124,6 +140,13 @@ const Airdrop = () => {
         })
         .catch(err => {
             console.log(err);
+        });
+    };
+
+    const onRecaptchaChange = (recaptchaToken) => {
+        setAirdropState({
+            ...airdropState,
+            recaptchaToken
         });
     };
 
@@ -144,11 +167,14 @@ const Airdrop = () => {
                             <p>{airdropRequest.error.message}</p>
                         ) : (
                             <form onSubmit={onFormSubmit}>
-                                <StyledInputField type="text" name="email" placeholder="Email" onChange={onInputChange} required />
-                                <StyledInputField type="text" name="verifyEmail" placeholder="Verify Email" onChange={onInputChange} required />
-                                <StyledInputField type="text" name="playerName" placeholder="Xaya Player Name (without p/)" onChange={onInputChange} required />
+                                <StyledInputField type="text" name="email" value={airdropState.email} placeholder="Email" onChange={onInputChange} required />
+                                <StyledInputField type="text" name="verifyEmail" value={airdropState.verifyEmail} placeholder="Verify Email" onChange={onInputChange} required />
+                                <StyledInputField type="text" name="playerName" value={airdropState.playerName} placeholder="Xaya Player Name (without p/)" onChange={onInputChange} required />
                                 {airdropState.email !== airdropState.verifyEmail && airdropState.verifyEmail.length > 0 ? (<ErrorText>Emails do not match</ErrorText>) : null}
-                                <StyledSubmitButton>Request Airdrop</StyledSubmitButton>
+                                <RecaptchaContainer>
+                                    <ReCAPTCHA sitekey={GOOGLE_RECAPTCHA_KEY} onChange={onRecaptchaChange} required />
+                                </RecaptchaContainer>
+                                <StyledSubmitButton disabled={!airdropState.recaptchaToken}>Request Airdrop</StyledSubmitButton>
                             </form>
                         )
                     }
