@@ -11,7 +11,7 @@ const Logo = styled.img`
     display: block;
     position: relative;
     margin: auto;
-    width: 40%;
+    width: 34%;
     top: 10vh;
 
     @media only screen and (max-width: ${size.tablet}) {

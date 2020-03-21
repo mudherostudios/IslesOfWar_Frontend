@@ -45,10 +45,6 @@ const NavBarItemText = styled.div`
     text-align: center;
     padding: 0.4rem;
 
-    &.strike-through {
-        text-decoration: line-through;
-    }
-
     @media only screen and (max-width: ${size.mobileS}) {
         font-size: 1.3rem;
     }
@@ -108,9 +104,9 @@ const Header = () => {
                 </NavBarItem>
             </StyledAnchor>
 
-            <StyledNavLink to='/home'>
+            <StyledNavLink to='/airdrop'>
                 <NavBarItem>
-                    <NavBarItemText className='strike-through'>Air Drop</NavBarItemText>
+                    <NavBarItemText>Air Drop</NavBarItemText>
                 </NavBarItem>
             </StyledNavLink>
         </NavBar>
