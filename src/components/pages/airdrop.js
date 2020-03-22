@@ -122,7 +122,7 @@ const Airdrop = () => {
 
         requestAirdrop({
             email: airdropState.email, 
-            playerName: airdropState.playerName.replace('p/', '').trim(),
+            playerName: airdropState.playerName.replace(/^(p\/)/, '').trim(),
             recaptchaToken: airdropState.recaptchaToken
         })
         .then(response => {
