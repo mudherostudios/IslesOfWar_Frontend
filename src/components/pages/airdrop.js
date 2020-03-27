@@ -84,6 +84,10 @@ const StyledSubmitButton = styled.button`
     }
 `;
 
+const StyledRetryButton = styled(StyledSubmitButton)`
+    background-color: orange;
+`;
+
 const ErrorText = styled.p`
     color: red;
     font-size: 1.2rem;
@@ -97,6 +101,12 @@ const RecaptchaContainer = styled.div`
     display: inline-block;
 `;
 
+const initialAirdropResponse = {
+    result: null,
+    error: null,
+    submitting: false
+};
+
 const Airdrop = () => {
     const [airdropState, setAirdropState] = useState({
         email: '',
@@ -105,10 +115,7 @@ const Airdrop = () => {
         recaptchaToken: null
     });
 
-    const [airdropRequest, setAirdropRequest] = useState({
-        result: null,
-        error: null
-    });
+    const [airdropResponse, setAirdropResponse] = useState(initialAirdropResponse);
 
     const onInputChange = (event) => {
         setAirdropState({
@@ -120,6 +127,11 @@ const Airdrop = () => {
     const onFormSubmit = (event) => {
         event.preventDefault();
 
+        setAirdropResponse({
+            ...airdropResponse,
+            submitting: true
+        });
+
         requestAirdrop({
             email: airdropState.email, 
             playerName: airdropState.playerName.replace(/^(p\/)/, '').trim(),
@@ -127,19 +139,27 @@ const Airdrop = () => {
         })
         .then(response => {
             if (!response.error) {
-                return setAirdropRequest({
-                    ...airdropRequest, 
-                    result: response
+                return setAirdropResponse({
+                    ...airdropResponse, 
+                    result: response,
+                    submitting: false
                 });
-            } 
+            }
 
-            setAirdropRequest({
-                ...airdropRequest,
+            setAirdropResponse({
+                ...airdropResponse,
                 error: response.error,
+                submitting: false
             });
         })
         .catch(err => {
             console.log(err);
+
+            setAirdropResponse({
+                ...airdropResponse,
+                error: 'Unexpected error occurred. Please try again.',
+                submitting: false
+            });
         });
     };
 
@@ -148,6 +168,12 @@ const Airdrop = () => {
             ...airdropState,
             recaptchaToken
         });
+    };
+
+    const onRetryButtonClick = (event) => {
+        event.preventDefault();
+
+        setAirdropResponse(initialAirdropResponse);
     };
 
     return (
@@ -161,10 +187,13 @@ const Airdrop = () => {
             <StyledFormCard>
                 <StyledCardBody>
                     {
-                        airdropRequest.result ? (
+                        airdropResponse.result ? (
                             <p>Your airdrop was successfully requested. A verification link has been sent to your email.</p>
-                        ) : airdropRequest.error ? (
-                            <p>{airdropRequest.error.message}</p>
+                        ) : airdropResponse.error ? (
+                            <>
+                                <p>{airdropResponse.error.message}</p>
+                                <StyledRetryButton onClick={onRetryButtonClick}>Retry</StyledRetryButton>
+                            </>
                         ) : (
                             <form onSubmit={onFormSubmit}>
                                 <StyledInputField type="text" name="email" value={airdropState.email} placeholder="Email" onChange={onInputChange} required />
@@ -174,7 +203,13 @@ const Airdrop = () => {
                                 <RecaptchaContainer>
                                     <ReCAPTCHA sitekey={GOOGLE_RECAPTCHA_KEY} onChange={onRecaptchaChange} required />
                                 </RecaptchaContainer>
-                                <StyledSubmitButton disabled={!airdropState.recaptchaToken}>Request Airdrop</StyledSubmitButton>
+                                {
+                                    airdropResponse.submitting ? (
+                                        <StyledSubmitButton disabled={true}>Submitting...</StyledSubmitButton> 
+                                    ) : (
+                                        <StyledSubmitButton disabled={!airdropState.recaptchaToken}>Request Airdrop</StyledSubmitButton>
+                                    )
+                                }
                             </form>
                         )
                     }
